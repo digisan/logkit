@@ -16,12 +16,6 @@ var (
 	fEf        = fmt.Errorf
 	sHasSuffix = strings.HasSuffix
 	sLastIndex = strings.LastIndex
-	// sReplaceAll  = strings.ReplaceAll
-	// sJoin        = strings.Join
-	// sSplit       = strings.Split
-	// sContains    = strings.Contains
-	// scParseFloat = strconv.ParseFloat
-
 )
 
 const (

@@ -1,9 +1,11 @@
 package logkit
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
+	"sync/atomic"
 	"time"
 
 	"github.com/digisan/gotk/io"
@@ -74,4 +76,25 @@ func resetLog() error {
 	log.SetOutput(os.Stdout)
 	log2F = false
 	return nil
+}
+
+func Fac4IdxLog(start int, ll logLevel, warnOnErr bool) func(v ...interface{}) {
+	index := int64(start - 1)
+	return func(v ...interface{}) {
+		prefix := fmt.Sprintf("%05d", atomic.AddInt64(&index, 1))
+		content := fmt.Sprint(v[1:]...)
+		fn := Log
+		switch ll {
+		case DEBUG:
+			fn = DebugP1
+		case WARN:
+			fn = WarnP1 // must warn even if no error
+			if warnOnErr {
+				fn = WarnP1OnErr
+			}
+		case FAIL:
+			fn = FailP1OnErr
+		}
+		fn("%s - %s", prefix, content)
+	}
 }

@@ -1,6 +1,6 @@
 package logkit
 
-// Warner :
+// Warn :
 func Warn(format string, v ...interface{}) {
 	logger(2, WARN, format+"%v", append(v, fEf(""))...)
 }
@@ -15,6 +15,11 @@ func WarnOnErrWhen(condition bool, format string, v ...interface{}) {
 	if condition {
 		logger(2, WARN, format, v...)
 	}
+}
+
+// WarnP1 :
+func WarnP1(format string, v ...interface{}) {
+	logger(3, WARN, format+"%v", append(v, fEf(""))...)
 }
 
 // WarnP1OnErr : write error into Console OR File
