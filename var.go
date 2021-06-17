@@ -42,11 +42,11 @@ var (
 		FAIL:  "FAIL",
 	}
 
-	W = clr.FgWhite.Render  // file
-	G = clr.FgGreen.Render  // log
-	B = clr.FgBlue.Render   // debug
-	Y = clr.FgYellow.Render // warn
-	R = clr.FgRed.Render    // fail
+	W = clr.FgWhite.Render     // file
+	G = clr.FgGreen.Render     // log
+	B = clr.FgLightBlue.Render // debug
+	Y = clr.FgYellow.Render    // warn
+	R = clr.FgRed.Render       // fail
 
 	mLvlClr map[logLevel]func(a ...interface{}) string = map[logLevel]func(a ...interface{}) string{
 		FILE:  func(a ...interface{}) string { return fmt.Sprint(a...) },

@@ -10,24 +10,24 @@ func main() {
 
 	lk.Log2F(true, "temp")
 
-	iinfo := lk.Fac4IdxLog(0, lk.INFO, false)
-	iinfo("%s", "this is from INFO log")
+	iinfo := lk.Fac4GrpIdxLogF("A", 0, lk.INFO, false)
+	iinfo("%s %05d", "this is from INFO log", 100)
 	iinfo("%s", "this is from INFO log")
 	iinfo("%s", "this is from INFO log")
 
-	idebug := lk.Fac4IdxLog(0, lk.DEBUG, false)
+	idebug := lk.Fac4GrpIdxLogF("B", 0, lk.DEBUG, false)
 	idebug("%s", "this is from DEBUG log")
 	idebug("%s", "this is from DEBUG log")
 	idebug("%s", "this is from DEBUG log")
 
-	iwarn := lk.Fac4IdxLog(0, lk.WARN, false)
+	iwarn := lk.Fac4GrpIdxLogF("C", 0, lk.WARN, false)
 	iwarn("%s", "this is from WARN log")
 	iwarn("%s", "this is from WARN log")
 	iwarn("%s", "this is from WARN log")
 
-	ifail := lk.Fac4IdxLog(0, lk.FAIL, false)
+	ifail := lk.Fac4GrpIdxLogF("D", 0, lk.FAIL, false)
 	ifail("%s", "this is from FAIL log")
-	ifail("%s", "this is from FAIL log")
+	ifail("%s%v", "this is from FAIL log", fmt.Errorf(" --- STOP"))
 	ifail("%s", "this is from FAIL log")
 
 	fmt.Println("----------------------------------------")

@@ -78,11 +78,13 @@ func resetLog() error {
 	return nil
 }
 
-func Fac4IdxLog(start int, ll logLevel, warnOnErr bool) func(v ...interface{}) {
+func Fac4GrpIdxLogF(group string, start int, ll logLevel, warnOnErr bool) func(v ...interface{}) {
 	index := int64(start - 1)
 	return func(v ...interface{}) {
-		prefix := fmt.Sprintf("%05d", atomic.AddInt64(&index, 1))
-		content := fmt.Sprint(v[1:]...)
+		prefix := group
+		if start >= 0 {
+			prefix = fmt.Sprintf("%s %06d", group, atomic.AddInt64(&index, 1))
+		}
 		fn := Log
 		switch ll {
 		case DEBUG:
@@ -95,6 +97,6 @@ func Fac4IdxLog(start int, ll logLevel, warnOnErr bool) func(v ...interface{}) {
 		case FAIL:
 			fn = FailP1OnErr
 		}
-		fn("%s - %s", prefix, content)
+		fn("%s - "+v[0].(string), append([]interface{}{prefix}, v[1:]...)...)
 	}
 }
