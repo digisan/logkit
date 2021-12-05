@@ -25,7 +25,7 @@ func main() {
 	iwarn("%s", "this is from WARN log")
 	iwarn("%s", "this is from WARN log")
 
-	ifail := lk.Fac4GrpIdxLogF("D", 0, lk.FAIL, false)
+	ifail := lk.Fac4GrpIdxLogF("D", -1, lk.FAIL, false)
 	ifail("%s", "this is from FAIL log")
 	ifail("%s%v", "this is from FAIL log", fmt.Errorf(" --- STOP"))
 	ifail("%s", "this is from FAIL log")

@@ -3,7 +3,7 @@ package logkit
 import (
 	"log"
 
-	"github.com/digisan/gotk/slice/to"
+	"github.com/digisan/gotk/generics/to"
 )
 
 // logger : write info into Console OR File

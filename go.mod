@@ -1,9 +1,13 @@
 module github.com/digisan/logkit
 
-go 1.16
+go 1.17
 
 require (
-	github.com/digisan/gotk v0.0.26
-	github.com/gookit/color v1.4.2
-	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
+	github.com/digisan/gotk v0.0.43
+	github.com/gookit/color v1.5.0
+)
+
+require (
+	github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778 // indirect
+	golang.org/x/sys v0.0.0-20211204120058-94396e421777 // indirect
 )
