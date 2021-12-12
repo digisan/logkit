@@ -3,7 +3,7 @@ package logkit
 import (
 	"log"
 
-	"github.com/digisan/gotk/generics/to"
+	"github.com/digisan/go-generics/obj"
 )
 
 // logger : write info into Console OR File
@@ -11,7 +11,7 @@ func logger(tl int, lvl logLevel, format string, v ...interface{}) {
 
 	tc := TrackCaller(tl)
 
-	ev := to.FM(v, func(i int, e interface{}) bool { _, ok := e.(error); return ok && e != nil }, nil)
+	ev := obj.FM(v, func(i int, e interface{}) bool { _, ok := e.(error); return ok && e != nil }, nil)
 	hasErr := len(ev) > 0
 
 	clrDesc := mLvlClr[lvl](mLvlDesc[lvl])
