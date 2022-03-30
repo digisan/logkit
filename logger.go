@@ -3,22 +3,22 @@ package logkit
 import (
 	"log"
 
-	"github.com/digisan/go-generics/obj"
+	. "github.com/digisan/go-generics/v2"
 )
 
 // logger : write info into Console OR File
-func logger(tl int, lvl logLevel, format string, v ...interface{}) {
+func logger(tl int, lvl logLevel, format string, v ...any) {
 
 	tc := TrackCaller(tl)
 
-	ev := obj.FM(v, func(i int, e interface{}) bool { _, ok := e.(error); return ok && e != nil }, nil)
-	hasErr := len(ev) > 0
+	ov := Filter(&v, func(i int, e any) bool { _, ok := e.(error); return ok && e != nil })
+	hasErr := len(v) > 0
 
 	clrDesc := mLvlClr[lvl](mLvlDesc[lvl])
-	v4c := append([]interface{}{clrDesc}, v...)
+	v4c := append([]any{clrDesc}, ov...)
 
 	clrDesc = mLvlClr[FILE](mLvlDesc[lvl])
-	v4f := append([]interface{}{clrDesc}, v...)
+	v4f := append([]any{clrDesc}, ov...)
 
 	switch lvl {
 	case INFO:
@@ -86,12 +86,12 @@ func logger(tl int, lvl logLevel, format string, v ...interface{}) {
 
 // ------------------------------------------------------- //
 
-func Log(format string, v ...interface{}) {
+func Log(format string, v ...any) {
 	logger(0, INFO, format, v...)
 }
 
 // LogWhen : write info into Console OR File
-func LogWhen(condition bool, format string, v ...interface{}) {
+func LogWhen(condition bool, format string, v ...any) {
 	if condition {
 		Log(format, v...)
 	}

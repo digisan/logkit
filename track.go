@@ -58,6 +58,6 @@ func ParentCaller(fullpath bool) string {
 	return RmHeadToLast(fn, ".")
 }
 
-func FuncTrack(i interface{}) string {
+func FuncTrack(i any) string {
 	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }

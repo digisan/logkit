@@ -48,8 +48,8 @@ var (
 	Y = clr.FgYellow.Render    // warn
 	R = clr.FgRed.Render       // fail
 
-	mLvlClr map[logLevel]func(a ...interface{}) string = map[logLevel]func(a ...interface{}) string{
-		FILE:  func(a ...interface{}) string { return fmt.Sprint(a...) },
+	mLvlClr map[logLevel]func(a ...any) string = map[logLevel]func(a ...any) string{
+		FILE:  func(a ...any) string { return fmt.Sprint(a...) },
 		INFO:  G, // W
 		DEBUG: B,
 		WARN:  Y,
