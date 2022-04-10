@@ -4,12 +4,13 @@ import (
 	"log"
 
 	. "github.com/digisan/go-generics/v2"
+	"github.com/digisan/gotk/track"
 )
 
 // logger : write info into Console OR File
 func logger(tl int, lvl logLevel, format string, v ...any) {
 
-	tc := TrackCaller(tl)
+	tc := track.TrackCaller(tl)
 
 	ov := Filter(&v, func(i int, e any) bool { _, ok := e.(error); return ok && e != nil })
 	hasErr := len(v) > 0

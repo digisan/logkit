@@ -4,9 +4,18 @@ import (
 	"fmt"
 
 	lk "github.com/digisan/logkit"
+	"github.com/digisan/gotk/project"
 )
 
 func main() {
+
+	pn, ok := project.PrjName("TEST-PNAME")
+	lk.Log("%v - %v", pn, ok)
+
+	pv, ok := project.GitVer("TEST-PVERSION")
+	lk.Log("%v - %v", pv, ok)
+
+	lk.Log("%s", "-------------------------")
 
 	lk.Log2F(true, "temp")
 
