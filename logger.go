@@ -12,14 +12,14 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 
 	tc := track.TrackCaller(tl)
 
-	ov := Filter(&v, func(i int, e any) bool { _, ok := e.(error); return ok && e != nil })
-	hasErr := len(v) > 0
+	ev := Filter(v, func(i int, e any) bool { _, ok := e.(error); return ok && e != nil })
+	hasErr := len(ev) > 0
 
 	clrDesc := mLvlClr[lvl](mLvlDesc[lvl])
-	v4c := append([]any{clrDesc}, ov...)
+	v4c := append([]any{clrDesc}, v...)
 
 	clrDesc = mLvlClr[FILE](mLvlDesc[lvl])
-	v4f := append([]any{clrDesc}, ov...)
+	v4f := append([]any{clrDesc}, v...)
 
 	switch lvl {
 	case INFO:

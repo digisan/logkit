@@ -1,8 +1,8 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/digisan/go-generics v0.1.9 h1:RpFbUJxRjfAKggQTaBZzKVc80zPVb+XJg+/tRXwkEPg=
-github.com/digisan/go-generics v0.1.9/go.mod h1:uYqkhOsBlydT6uPQaapc6Bk3cbnmQ8ftBm/sWbShxAI=
-github.com/digisan/gotk v0.1.0 h1:Hm0jBXcJCw6ZoAaqmDpSaOMbZFqq02NjnKxMG5F2BHg=
-github.com/digisan/gotk v0.1.0/go.mod h1:Hbgf3K+VJSCS++wOEMiFzqOxQez0veoE09kreCBtHpI=
+github.com/digisan/go-generics v0.1.14 h1:kMopfBWx7I2qxkfnKGI9sTcFNB1JCacFa/fHOf8bFdk=
+github.com/digisan/go-generics v0.1.14/go.mod h1:uYqkhOsBlydT6uPQaapc6Bk3cbnmQ8ftBm/sWbShxAI=
+github.com/digisan/gotk v0.1.14 h1:+S2jdfZSja2sfhguDgq4ZyKmQPMqc+oUJ1ic6DehJVM=
+github.com/digisan/gotk v0.1.14/go.mod h1:5U1clnIyGMeYgLOHDVZjvXUnvxJTEkvb9nXdjjhoV9I=
 github.com/gookit/color v1.5.0 h1:1Opow3+BWDwqor78DcJkJCIwnkviFi+rrOANki9BUFw=
 github.com/gookit/color v1.5.0/go.mod h1:43aQb+Zerm/BWh2GnrgOQm7ffz7tvQXEKV6BFMl7wAo=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
@@ -11,7 +11,7 @@ github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/
 github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778 h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8=
 github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778/go.mod h1:2MuV+tbUrU1zIOPMxZ5EncGwgmMJsa+9ucAQZXxsObs=
 golang.org/x/sys v0.0.0-20210330210617-4fbd30eecc44/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-golang.org/x/sys v0.0.0-20220408201424-a24fb2fb8a0f h1:8w7RhxzTVgUzw/AH/9mUV5q0vMgy40SQRursCcfmkCw=
-golang.org/x/sys v0.0.0-20220408201424-a24fb2fb8a0f/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a h1:dGzPydgVsqGcTRVwiLJ1jVbufYwmzD3LfVPLKsKg+0k=
+golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
