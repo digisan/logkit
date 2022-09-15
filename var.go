@@ -11,16 +11,15 @@ import (
 
 var (
 	fPt        = fmt.Print
-	fPln       = fmt.Println
 	fSf        = fmt.Sprintf
 	fEf        = fmt.Errorf
 	sHasSuffix = strings.HasSuffix
-	sLastIndex = strings.LastIndex
 )
 
 const (
 	tmFmt        = "2006/01/02 15:04:05 " // end with " " same as log.Printf
 	logfile4test = "./a/b.log"
+	LF           = "\n\t\t\t\t"
 )
 
 type logLevel int
