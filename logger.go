@@ -12,7 +12,9 @@ import (
 func logger(tl int, lvl logLevel, format string, v ...any) {
 
 	tc := track.TrackCaller(tl)
-	tc = strings.Replace(tc, "\n", "\n\t\t\t\t--> ", 2)
+	const tcPrefix = "\n\t\t\t\t--> "
+	const tcPrefix4f = "\n\t\t\t\t\t\t\t\t--> "
+	tc = strings.Replace(tc, "\n", tcPrefix, 2)
 
 	ev := Filter(v, func(i int, e any) bool { _, ok := e.(error); return ok && e != nil })
 	hasErr := len(ev) > 0
@@ -24,7 +26,7 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 	v4f := append([]any{clrDesc}, v...)
 
 	nLF := strings.Count(format, LF)
-	const lfRepl4f = "\"\n\t\t\t\t\t\t\t\t\""
+	const lf4f = "\"\n\t\t\t\t\t\t\t\t\""
 
 	switch lvl {
 	case INFO:
@@ -34,7 +36,7 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 		}
 		if log2F {
 			item := fSf("\t%s\t\""+format+"\"\n", v4f...)
-			item = strings.Replace(item, LF, lfRepl4f, nLF)
+			item = strings.Replace(item, LF, lf4f, nLF)
 			log.Printf("%s", item)
 		}
 
@@ -45,8 +47,8 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 		}
 		if log2F {
 			item := fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
-			item = strings.Replace(item, LF, lfRepl4f, nLF)
-			item = strings.Replace(item, "\n\t\t\t\t--> ", "\n\t\t\t\t\t\t\t\t--> ", 2)
+			item = strings.Replace(item, LF, lf4f, nLF)
+			item = strings.Replace(item, tcPrefix, tcPrefix4f, 2)
 			log.Printf("%s", item)
 		}
 
@@ -59,7 +61,7 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 				}
 				if log2F {
 					item := fSf("\t%s\t\""+format+"\"\n", v4f...)
-					item = strings.Replace(item, LF, lfRepl4f, nLF)
+					item = strings.Replace(item, LF, lf4f, nLF)
 					log.Printf("%s", item)
 				}
 			} else {
@@ -69,8 +71,8 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 				}
 				if log2F {
 					item := fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
-					item = strings.Replace(item, LF, lfRepl4f, nLF)
-					item = strings.Replace(item, "\n\t\t\t\t--> ", "\n\t\t\t\t\t\t\t\t--> ", 2)
+					item = strings.Replace(item, LF, lf4f, nLF)
+					item = strings.Replace(item, tcPrefix, tcPrefix4f, 2)
 					log.Printf("%s", item)
 				}
 			}
@@ -82,8 +84,8 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 				item := fSf("\t%s\t"+format+"%s", append(v4c, tc)...)
 				fPt(nowstr() + item)
 				item = fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
-				item = strings.Replace(item, LF, lfRepl4f, nLF)
-				item = strings.Replace(item, "\n\t\t\t\t--> ", "\n\t\t\t\t\t\t\t\t--> ", 2)
+				item = strings.Replace(item, LF, lf4f, nLF)
+				item = strings.Replace(item, tcPrefix, tcPrefix4f, 2)
 				log.Fatalf("%s", item)
 			}
 			if log2C {
@@ -92,8 +94,8 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 			}
 			if log2F {
 				item := fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
-				item = strings.Replace(item, LF, lfRepl4f, nLF)
-				item = strings.Replace(item, "\n\t\t\t\t--> ", "\n\t\t\t\t\t\t\t\t--> ", 2)
+				item = strings.Replace(item, LF, lf4f, nLF)
+				item = strings.Replace(item, tcPrefix, tcPrefix4f, 2)
 				log.Fatalf("%s", item)
 			}
 		}
