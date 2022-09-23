@@ -14,6 +14,7 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 	tc := track.TrackCaller(tl)
 	const tcPrefix = "\n\t\t\t\t--> "
 	const tcPrefix4f = "\n\t\t\t\t\t\t\t\t--> "
+	const tcPrefix4c = "\n\t\t\t\t\t\t--> "
 	tc = strings.Replace(tc, "\n", tcPrefix, 2)
 
 	ev := Filter(v, func(i int, e any) bool { _, ok := e.(error); return ok && e != nil })
@@ -42,7 +43,7 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 
 	case DEBUG:
 		if log2C {
-			item := fSf("\t%s\t"+format+"%s", append(v4c, tc)...)
+			item := fSf("\t%s\t"+format+"%s", append(v4c, B(tc))...)
 			fPt(nowstr() + item)
 		}
 		if log2F {
@@ -66,7 +67,7 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 				}
 			} else {
 				if log2C {
-					item := fSf("\t%s\t"+format+"%s", append(v4c, tc)...)
+					item := fSf("\t%s\t"+format+"%s", append(v4c, Y(tc))...)
 					fPt(nowstr() + item)
 				}
 				if log2F {
@@ -81,15 +82,21 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 	case FAIL:
 		if hasErr {
 			if log2C && log2F {
-				item := fSf("\t%s\t"+format+"%s", append(v4c, tc)...)
+
+				// console
+				item := fSf("\t%s\t"+format+"%s", append(v4c, R(tc))...)
 				fPt(nowstr() + item)
+
+				// file
 				item = fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
 				item = strings.Replace(item, LF, lf4f, nLF)
 				item = strings.Replace(item, tcPrefix, tcPrefix4f, 2)
 				log.Fatalf("%s", item)
 			}
 			if log2C {
-				item := fSf("\t%s\t"+format+"%s", append(v4c, tc)...)
+				item := fSf("\t%s\t"+format+"%s", append(v4c, R(tc))...)
+				item = strings.Replace(item, LF, longLF, nLF)
+				item = strings.Replace(item, tcPrefix, tcPrefix4c, 2)
 				log.Fatalf("%s", item)
 			}
 			if log2F {

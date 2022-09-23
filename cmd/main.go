@@ -38,7 +38,7 @@ func main() {
 
 	ifail := lk.Fac4GrpIdxLogF("D", -1, lk.FAIL, false)
 	ifail("this is from FAIL log 1")
-	ifail("this is from FAIL log 2 %v"+lk.LF+"this is a new line %d", fmt.Errorf(" --- STOP"), 400)
+	ifail("this is from FAIL log 2 %v"+lk.LF+"this is a new line %d"+lk.LF+"this is the third line %d", fmt.Errorf(" --- STOP"), 400, 401)
 	ifail("%s", "this is from FAIL log 3")
 
 	fmt.Println("----------------------------------------")

@@ -20,6 +20,7 @@ const (
 	tmFmt        = "2006/01/02 15:04:05 " // end with " " same as log.Printf
 	logfile4test = "./a/b.log"
 	LF           = "\n\t\t\t\t"
+	longLF		 = "\n\t\t\t\t\t\t"
 )
 
 type logLevel int
