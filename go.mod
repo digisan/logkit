@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/digisan/go-generics v0.2.31
-	github.com/digisan/gotk v0.2.14
+	github.com/digisan/gotk v0.2.15
 	github.com/gookit/color v1.5.2
 )
 
