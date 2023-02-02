@@ -1,10 +1,10 @@
 module github.com/digisan/logkit
 
-go 1.19
+go 1.20
 
 require (
-	github.com/digisan/go-generics v0.2.31
-	github.com/digisan/gotk v0.2.15
+	github.com/digisan/go-generics v0.3.0
+	github.com/digisan/gotk v0.3.0
 	github.com/gookit/color v1.5.2
 )
 
