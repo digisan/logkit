@@ -1,10 +1,18 @@
 package logkit
 
 import (
+	"bufio"
+	"fmt"
+	"io"
 	"log"
+	"os"
+	"path/filepath"
+	"runtime/debug"
 	"strings"
+	"time"
 
 	. "github.com/digisan/go-generics/v2"
+	gio "github.com/digisan/gotk/io"
 	"github.com/digisan/gotk/track"
 )
 
@@ -81,30 +89,68 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 
 	case FAIL:
 		if hasErr {
-			if log2C && log2F {
 
+			var item string
+
+			switch {
+			case log2C && log2F:
 				// console
-				item := fSf("\t%s\t"+format+"%s", append(v4c, R(tc))...)
+				item = fSf("\t%s\t"+format+"%s", append(v4c, R(tc))...)
 				fPt(nowstr() + item)
 
 				// file
 				item = fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
 				item = strings.Replace(item, LF, lf4f, nLF)
 				item = strings.Replace(item, tcPrefix, tcPrefix4f, 2)
-				log.Fatalf("%s", item)
-			}
-			if log2C {
-				item := fSf("\t%s\t"+format+"%s", append(v4c, R(tc))...)
+				log.Printf("%s", item)
+
+			case log2C:
+				item = fSf("\t%s\t"+format+"%s", append(v4c, R(tc))...)
 				item = strings.Replace(item, LF, longLF, nLF)
 				item = strings.Replace(item, tcPrefix, tcPrefix4c, 2)
-				log.Fatalf("%s", item)
-			}
-			if log2F {
-				item := fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
+				log.Printf("%s", item)
+
+			case log2F:
+				item = fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
 				item = strings.Replace(item, LF, lf4f, nLF)
 				item = strings.Replace(item, tcPrefix, tcPrefix4f, 2)
-				log.Fatalf("%s", item)
+				log.Printf("%s", item)
 			}
+
+			/// *** record fatal stack message to file ***
+			///
+
+			fatalDir := "./fatal"
+			gio.MustCreateDir(fatalDir)
+			fName := strings.TrimSpace(strings.ReplaceAll(nowstr(), "/", "-"))
+			fPath := filepath.Join(fatalDir, fName+".log")
+
+			f, err := os.OpenFile(fPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0664)
+			if err != nil {
+				panic(err)
+			}
+
+			multiWriter := io.MultiWriter(os.Stderr, f)
+			rd, wr, err := os.Pipe()
+			if err != nil {
+				panic(err)
+			}
+			os.Stderr = wr
+
+			go func() {
+				scanner := bufio.NewScanner(rd)
+				for scanner.Scan() {
+					multiWriter.Write([]byte(scanner.Text() + "\n"))
+				}
+			}()
+
+			fmt.Fprintln(os.Stderr, item+"\n")
+			debug.PrintStack()
+			time.Sleep(time.Duration(1 * time.Second))
+
+			/// ***
+
+			panic("FAILED!")
 		}
 	}
 }

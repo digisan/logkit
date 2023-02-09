@@ -42,7 +42,6 @@ func main() {
 	ifail("%s", "this is from FAIL log 3")
 
 	fmt.Println("----------------------------------------")
-	// ------------------------------ //
 
 	lk.Log("%s %d", "this is from INFO log", 100)
 	lk.Debug("%s", "this is from DEBUG log")
