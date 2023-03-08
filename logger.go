@@ -12,7 +12,7 @@ import (
 	"time"
 
 	. "github.com/digisan/go-generics/v2"
-	gio "github.com/digisan/gotk/io"
+	fd "github.com/digisan/gotk/file-dir"
 	"github.com/digisan/gotk/track"
 )
 
@@ -121,7 +121,7 @@ func logger(tl int, lvl logLevel, format string, v ...any) {
 			///
 
 			fatalDir := "./fatal"
-			gio.MustCreateDir(fatalDir)
+			fd.MustCreateDir(fatalDir)
 			fName := strings.TrimSpace(strings.ReplaceAll(nowstr(), "/", "-"))
 			fPath := filepath.Join(fatalDir, fName+".log")
 

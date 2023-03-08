@@ -8,7 +8,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/digisan/gotk/io"
+	fd "github.com/digisan/gotk/file-dir"
 )
 
 // WarnDetail :
@@ -46,7 +46,7 @@ func setLog(logfile string) {
 
 	logfile += fSf("@%s%s%4.1f%s", zone, cat, float32(offset/3600.0), ".log")
 	if abspath, err := filepath.Abs(logfile); err == nil {
-		io.MustAppendFile(abspath, nil, false)
+		fd.MustAppendFile(abspath, nil, false)
 		if f, err := os.OpenFile(abspath, os.O_RDWR|os.O_CREATE|os.O_APPEND, FilePerm); err == nil {
 			mPathFile[abspath] = f
 			log.SetFlags(log.LstdFlags) // log.SetFlags(log.LstdFlags | log.LUTC)
