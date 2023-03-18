@@ -3,8 +3,8 @@ module github.com/digisan/logkit
 go 1.20
 
 require (
-	github.com/digisan/go-generics v0.3.3
-	github.com/digisan/gotk v0.3.4
+	github.com/digisan/go-generics v0.3.5
+	github.com/digisan/gotk v0.3.5
 	github.com/gookit/color v1.5.2
 )
 
