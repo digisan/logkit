@@ -5,8 +5,8 @@ go 1.21
 toolchain go1.21.0
 
 require (
-	github.com/digisan/go-generics v0.4.1
-	github.com/digisan/gotk v0.4.9
+	github.com/digisan/go-generics v0.4.2
+	github.com/digisan/gotk v0.4.11
 	github.com/gookit/color v1.5.4
 )
 
