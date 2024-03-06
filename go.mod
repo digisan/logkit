@@ -1,6 +1,6 @@
 module github.com/digisan/logkit
 
-go 1.22.0
+go 1.22.1
 
 require (
 	github.com/digisan/go-generics v0.5.1

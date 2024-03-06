@@ -17,7 +17,8 @@ func main() {
 
 	lk.Log("%s", "-------------------------")
 
-	lk.Log2F(true, "temp")
+	logFile := lk.Log2F(true, "temp")
+	fmt.Println(logFile)
 
 	lk.Log("this is from INFO log"+lk.LF+"this is from INFO log 2nd line %d", 100)
 

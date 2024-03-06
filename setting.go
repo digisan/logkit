@@ -8,6 +8,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	. "github.com/digisan/go-generics"
 	fd "github.com/digisan/gotk/file-dir"
 )
 
@@ -22,11 +23,12 @@ func Log2C(enable bool) {
 }
 
 // Log2F :
-func Log2F(enable bool, logfile string) {
+func Log2F(enable bool, logFile string) string {
 	if enable {
-		setLog(logfile)
+		return setLog(logFile)
 	} else {
 		resetLog()
+		return ""
 	}
 }
 
@@ -34,26 +36,23 @@ func Log2F(enable bool, logfile string) {
 const FilePerm = 0666
 
 // setLog :
-func setLog(logfile string) {
+func setLog(logFile string) string {
 	zone, offset := time.Now().Zone()
-	if sHasSuffix(logfile, ".log") {
-		logfile = logfile[:len(logfile)-4]
-	}
-	cat := "+"
-	if offset < 0 {
-		cat = "-"
+	if sHasSuffix(logFile, ".log") {
+		logFile = logFile[:len(logFile)-4]
 	}
 
-	logfile += fSf("@%s%s%4.1f%s", zone, cat, float32(offset/3600.0), ".log")
-	if abspath, err := filepath.Abs(logfile); err == nil {
-		fd.MustAppendFile(abspath, nil, false)
-		if f, err := os.OpenFile(abspath, os.O_RDWR|os.O_CREATE|os.O_APPEND, FilePerm); err == nil {
-			mPathFile[abspath] = f
+	logFile += fSf("@%s%s%4.1f.log", zone, IF(offset < 0, "-", "+"), float32(offset/3600.0))
+	if absPath, err := filepath.Abs(logFile); err == nil {
+		fd.MustAppendFile(absPath, nil, false)
+		if f, err := os.OpenFile(absPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, FilePerm); err == nil {
+			mPathFile[absPath] = f
 			log.SetFlags(log.LstdFlags) // log.SetFlags(log.LstdFlags | log.LUTC)
 			log.SetOutput(f)
 			log2F = true
 		}
 	}
+	return logFile
 }
 
 // resetLog : call once at exit
