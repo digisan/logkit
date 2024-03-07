@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync/atomic"
 	"time"
 
@@ -23,13 +24,41 @@ func Log2C(enable bool) {
 }
 
 // Log2F :
-func Log2F(enable bool, logFile string) string {
+func Log2F(enable, new bool, logFile string) (string, error) {
 	if enable {
-		return setLog(logFile)
-	} else {
-		resetLog()
-		return ""
+		if new {
+			if _, err := remove(logFile); err != nil {
+				return "", err
+			}
+		}
+		return setLog(logFile), nil
 	}
+	return "", resetLog()
+}
+
+func remove(logFile string) (string, error) {
+	dir := filepath.Dir(logFile)
+	logFile = strings.TrimSuffix(filepath.Base(logFile), ".log")
+	des, err := os.ReadDir(dir)
+	if err != nil {
+		if os.IsNotExist(err) {
+			if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+				return "", err
+			}
+		} else {
+			return "", err
+		}
+	}
+	for _, de := range des {
+		if strings.Contains(de.Name(), logFile+"@") {
+			fPath := filepath.Join(dir, de.Name())
+			if err := os.RemoveAll(fPath); err != nil {
+				return "", err
+			}
+			return fPath, nil
+		}
+	}
+	return "", nil
 }
 
 // FilePerm :
