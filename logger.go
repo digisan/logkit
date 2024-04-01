@@ -17,7 +17,7 @@ import (
 )
 
 // logger : write info into Console OR File
-func logger(tl int, lvl logCategory, format string, v ...any) {
+func logger(tl int, cat logCategory, format string, v ...any) {
 
 	tc := "\n" + track.CallerDescription(tl) + "\n"
 	const tcPrefix = "\n\t\t\t\t--> "
@@ -28,16 +28,16 @@ func logger(tl int, lvl logCategory, format string, v ...any) {
 	ev := Filter(v, func(i int, e any) bool { _, ok := e.(error); return ok && e != nil })
 	hasErr := len(ev) > 0
 
-	clrDesc := mLvlClr[lvl](mLvlDesc[lvl])
+	clrDesc := mLvlClr[cat](mLvlDesc[cat])
 	v4c := append([]any{clrDesc}, v...)
 
-	clrDesc = mLvlClr[FILE](mLvlDesc[lvl])
+	clrDesc = mLvlClr[FILE](mLvlDesc[cat])
 	v4f := append([]any{clrDesc}, v...)
 
 	nLF := strings.Count(format, LF)
 	const lf4f = "\"\n\t\t\t\t\t\t\t\t\""
 
-	switch lvl {
+	switch cat {
 	case INFO:
 		if log2C {
 			item := fSf("\t%s\t"+format+"\n", v4c...)
