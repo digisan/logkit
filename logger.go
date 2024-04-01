@@ -17,7 +17,7 @@ import (
 )
 
 // logger : write info into Console OR File
-func logger(tl int, lvl logLevel, format string, v ...any) {
+func logger(tl int, lvl logCategory, format string, v ...any) {
 
 	tc := "\n" + track.CallerDescription(tl) + "\n"
 	const tcPrefix = "\n\t\t\t\t--> "

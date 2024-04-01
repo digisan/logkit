@@ -11,7 +11,6 @@ import (
 
 var (
 	fPt        = fmt.Print
-	fSt        = fmt.Sprint
 	fSf        = fmt.Sprintf
 	fEf        = fmt.Errorf
 	sHasSuffix = strings.HasSuffix
@@ -24,18 +23,18 @@ const (
 	longLF       = "\n\t\t\t\t\t\t"
 )
 
-type logLevel int
+type logCategory int
 
 const (
-	FILE  logLevel = 0
-	INFO  logLevel = 1
-	DEBUG logLevel = 2
-	WARN  logLevel = 3
-	FAIL  logLevel = 4
+	FILE  logCategory = 0
+	INFO  logCategory = 1
+	DEBUG logCategory = 2
+	WARN  logCategory = 3
+	FAIL  logCategory = 4
 )
 
 var (
-	mLvlDesc map[logLevel]string = map[logLevel]string{
+	mLvlDesc map[logCategory]string = map[logCategory]string{
 		FILE:  "",
 		INFO:  "INFO",
 		DEBUG: "DEBUG",
@@ -49,7 +48,7 @@ var (
 	Y = clr.FgYellow.Render    // warn
 	R = clr.FgRed.Render       // fail
 
-	mLvlClr map[logLevel]func(a ...any) string = map[logLevel]func(a ...any) string{
+	mLvlClr map[logCategory]func(a ...any) string = map[logCategory]func(a ...any) string{
 		FILE:  func(a ...any) string { return fmt.Sprint(a...) },
 		INFO:  G, // W
 		DEBUG: B,

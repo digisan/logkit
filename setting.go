@@ -106,7 +106,7 @@ func resetLog() error {
 	return nil
 }
 
-func Fac4GrpIdxLogF(group string, start int, ll logLevel, warnOnErr bool) func(v ...any) {
+func Fac4GrpIdxLogF(group string, start int, ll logCategory, warnOnErr bool) func(v ...any) {
 	index := int64(start - 1)
 	return func(v ...any) {
 		prefix := group
