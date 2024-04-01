@@ -41,7 +41,7 @@ func logger(tl int, lvl logCategory, format string, v ...any) {
 	case INFO:
 		if log2C {
 			item := fSf("\t%s\t"+format+"\n", v4c...)
-			fPt(nowstr() + item)
+			fPt(nowStr() + item)
 		}
 		if log2F {
 			item := fSf("\t%s\t\""+format+"\"\n", v4f...)
@@ -52,7 +52,7 @@ func logger(tl int, lvl logCategory, format string, v ...any) {
 	case DEBUG:
 		if log2C {
 			item := fSf("\t%s\t"+format+"%s", append(v4c, B(tc))...)
-			fPt(nowstr() + item)
+			fPt(nowStr() + item)
 		}
 		if log2F {
 			item := fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
@@ -66,7 +66,7 @@ func logger(tl int, lvl logCategory, format string, v ...any) {
 			if !warnDetail {
 				if log2C {
 					item := fSf("\t%s\t"+format+"\n", v4c...)
-					fPt(nowstr() + item)
+					fPt(nowStr() + item)
 				}
 				if log2F {
 					item := fSf("\t%s\t\""+format+"\"\n", v4f...)
@@ -76,7 +76,7 @@ func logger(tl int, lvl logCategory, format string, v ...any) {
 			} else {
 				if log2C {
 					item := fSf("\t%s\t"+format+"%s", append(v4c, Y(tc))...)
-					fPt(nowstr() + item)
+					fPt(nowStr() + item)
 				}
 				if log2F {
 					item := fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
@@ -96,7 +96,7 @@ func logger(tl int, lvl logCategory, format string, v ...any) {
 			case log2C && log2F:
 				// console
 				item = fSf("\t%s\t"+format+"%s", append(v4c, R(tc))...)
-				fPt(nowstr() + item)
+				fPt(nowStr() + item)
 
 				// file
 				item = fSf("\t%s\t\""+format+"\"%s", append(v4f, tc)...)
@@ -122,7 +122,7 @@ func logger(tl int, lvl logCategory, format string, v ...any) {
 
 			fatalDir := "./fatal"
 			fd.MustCreateDir(fatalDir)
-			fName := strings.TrimSpace(strings.ReplaceAll(nowstr(), "/", "-"))
+			fName := strings.TrimSpace(strings.ReplaceAll(nowStr(), "/", "-"))
 			fPath := filepath.Join(fatalDir, fName+".log")
 
 			f, err := os.OpenFile(fPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0664)

@@ -60,5 +60,5 @@ var (
 	log2F                          = false
 	warnDetail                     = true
 	mPathFile  map[string]*os.File = make(map[string]*os.File)
-	nowstr                         = func() string { return time.Now().Format(tmFmt) }
+	nowStr                         = func() string { return time.Now().Format(tmFmt) }
 )
