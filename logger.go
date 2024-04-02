@@ -16,6 +16,21 @@ import (
 	"github.com/digisan/gotk/track"
 )
 
+// "defer Track(time.Now)"
+func Track(now time.Time) {
+	tc := track.CallerDescription(1)
+	fn := strings.Split(tc, "\n")[1]
+	d := time.Since(now)
+	if log2C {
+		item := fSf("\t%s\t%s\t%v\n", M("TRACK"), fn, d)
+		fPt(nowStr() + item)
+	}
+	if log2F {
+		item := fSf("\t%s\t%s\t%v\n", "TRACK", fn, d)
+		log.Printf("%s", item)
+	}
+}
+
 // logger : write info into Console OR File
 func logger(tl int, cat logCategory, format string, v ...any) {
 

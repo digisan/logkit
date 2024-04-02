@@ -47,6 +47,7 @@ var (
 	B = clr.FgLightBlue.Render // debug
 	Y = clr.FgYellow.Render    // warn
 	R = clr.FgRed.Render       // fail
+	M = clr.FgMagenta.Render   // track
 
 	mLvlClr map[logCategory]func(a ...any) string = map[logCategory]func(a ...any) string{
 		FILE:  func(a ...any) string { return fmt.Sprint(a...) },
