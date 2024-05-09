@@ -27,22 +27,22 @@ func main() {
 
 	return
 
-	info := lk.Fac4GrpIdxLogF("A", 0, lk.INFO, false)
+	info := lk.Fn4GrpIdxLogF("A", 0, lk.INFO, false)
 	info("this is from INFO log 1"+lk.LF+"this is a new line %05d"+lk.LF+"this is another new line", 100)
 	info("this is from INFO log 2")
 	info("this is from INFO log 3")
 
-	debug := lk.Fac4GrpIdxLogF("B", 0, lk.DEBUG, false)
+	debug := lk.Fn4GrpIdxLogF("B", 0, lk.DEBUG, false)
 	debug("this is from DEBUG log 1")
 	debug("this is from DEBUG log 2"+lk.LF+"this is a new line %05d"+lk.LF+"this is another new line", 200)
 	debug("%s", "this is from DEBUG log 3")
 
-	warn := lk.Fac4GrpIdxLogF("C", 0, lk.WARN, false)
+	warn := lk.Fn4GrpIdxLogF("C", 0, lk.WARN, false)
 	warn("this is from WARN log 1")
 	warn("this is from WARN log 2"+lk.LF+"this is a new line %05d"+lk.LF+"this is another new line", 300)
 	warn("%s", "this is from WARN log 3")
 
-	fail := lk.Fac4GrpIdxLogF("D", -1, lk.FAIL, false)
+	fail := lk.Fn4GrpIdxLogF("D", -1, lk.FAIL, false)
 	fail("this is from FAIL log 1")
 	fail("this is from FAIL log 2 %v"+lk.LF+"this is a new line %d"+lk.LF+"this is the third line %d", fmt.Errorf(" --- STOP"), 400, 401)
 	fail("%s", "this is from FAIL log 3")

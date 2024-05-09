@@ -13,6 +13,7 @@ import (
 
 	. "github.com/digisan/go-generics"
 	fd "github.com/digisan/gotk/file-dir"
+	. "github.com/digisan/gotk/print"
 	"github.com/digisan/gotk/track"
 )
 
